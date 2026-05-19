@@ -119,7 +119,7 @@ Development since v3.14.1 focuses on a dedicated Claude Desktop surface with thi
 
 ### Docs
 
-- **README Sponsor Refresh (zh / en / ja)**: Added BytePlus, ClaudeCN, RunAPI, and PatewayAI sponsor entries; cross-linked BytePlus and Volcengine entries; refreshed the Crazyrouter $2 credit claim flow, the Compshare blurb, the Right Code blurb, and other sponsor logos and listings; flattened the LionCC logo onto a white background; switched the Chinese README's sponsor logo to the Volcengine artwork; added Hermes Agent to the README subtitles.
+- **README Provider Refresh (zh / en / ja)**: Added BytePlus, ClaudeCN, RunAPI, and PatewayAI provider entries; cross-linked BytePlus and Volcengine entries; refreshed the Crazyrouter $2 credit claim flow, the Compshare blurb, the Right Code blurb, and other provider logos and listings; flattened the LionCC logo onto a white background; switched the Chinese README's provider logo to the Volcengine artwork; added Hermes Agent to the README subtitles.
 - **Release Notes Template**: Surfaces `ccswitch.io` in the release notes template.
 - **Brand Surface**: Documented `ccswitch.io` as the sole official website across READMEs and in-app references.
 
@@ -235,10 +235,10 @@ Development since v3.13.0 focuses on onboarding Hermes Agent as a first-class ma
 
 ### Docs
 
-- **README Sponsor Updates**: Updated SiliconFlow signup bonus to ¥16, trimmed the SSSAiCode sponsor blurb, updated partner logos, and added LemonData as a new sponsor.
+- **README Provider Updates**: Updated SiliconFlow signup bonus to ¥16, trimmed the SSSAiCode provider blurb, updated partner logos, and added LemonData as a new provider.
 - **Global Proxy Hint Clarified**: Clarified the global proxy hint about local routing across all three locales.
 - **Takeover → Routing Rename**: Renamed takeover docs to routing and updated anchors across all languages.
-- **PIPELLM Website URL**: Updated the PIPELLM sponsor website URL to `code.pipellm.ai`.
+- **PIPELLM Website URL**: Updated the PIPELLM provider website URL to `code.pipellm.ai`.
 
 ### Breaking
 
@@ -321,7 +321,7 @@ Development since v3.12.3 focuses on quota visibility, provider workflow upgrade
 - **User Manual Refresh**: Updated the EN / ZH / JA manuals for tray submenus, lightweight mode, provider model fetching, session management, workspace files, WebDAV v2 behavior, OpenCode / OpenClaw activation, and other provider workflow improvements.
 - **Community & Contribution Docs**: Added `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, bilingual issue / PR templates, Dependabot config, and CI quality checks.
 - **Release Notes Risk Notice**: Added a Copilot reverse proxy risk notice and anchored highlight links in the v3.12.3 release notes across all three languages.
-- **Sponsor Partners**: Added Shengsuanyun, LionCC, and DDS as sponsor partners in README across all languages.
+- **Provider Updates**: Added Shengsuanyun, LionCC, and DDS as provider entries in README across all languages.
 
 ---
 
@@ -409,7 +409,7 @@ Post-v3.12.1 work focuses on Common Config safety during proxy takeover and more
 
 ### Patch Release
 
-Stability-focused patch release fixing the Common Config modal infinite reopen loop, a WebDAV sync foreign key constraint failure, several i18n interpolation issues, and a Windows toolbar compact mode bug. Also adds **StepFun** provider presets, **OpenClaw input type selection** and **authHeader** support, upgrades Gemini to **3.1-pro**, and welcomes four new sponsor partners.
+Stability-focused patch release fixing the Common Config modal infinite reopen loop, a WebDAV sync foreign key constraint failure, several i18n interpolation issues, and a Windows toolbar compact mode bug. Also adds **StepFun** provider presets, **OpenClaw input type selection** and **authHeader** support, upgrades Gemini to **3.1-pro**, and welcomes four new provider entries.
 
 **Stats**: 19 commits | 56 files changed | +1,429 insertions | -396 deletions
 
@@ -424,17 +424,17 @@ Stability-focused patch release fixing the Common Config modal infinite reopen l
 - **Input Type Selection**: Added input type selection dropdown for model Advanced Options in OpenClaw configuration form (#1368, thanks @liuxxxu)
 - **authHeader Field**: Added optional `authHeader` boolean to OpenClawProviderConfig for vendor-specific auth header support (e.g. Longcat), and refactored form state to reuse the shared type
 
-#### Sponsor Partners
+#### Provider Updates
 
-- **Micu API**: Added Micu API as sponsor partner with affiliate links
-- **XCodeAPI**: Added XCodeAPI as sponsor partner
-- **SiliconFlow**: Added SiliconFlow (硅基流动) as sponsor partner with affiliate links
-- **CTok**: Added CTok as sponsor partner
+- **Micu API**: Added Micu API as provider entry with affiliate links
+- **XCodeAPI**: Added XCodeAPI as provider entry
+- **SiliconFlow**: Added SiliconFlow (硅基流动) as provider entry with affiliate links
+- **CTok**: Added CTok as provider entry
 
 ### Changed
 
 - **UCloud → Compshare**: Renamed UCloud provider to Compshare (优云智算) with full i18n support across all three locales (EN/ZH/JA)
-- **Compshare Links**: Updated Compshare sponsor registration links to coding-plan page
+- **Compshare Links**: Updated Compshare provider registration links to coding-plan page
 - **Gemini Model Upgrade**: Upgraded default Gemini model from 2.5-pro to 3.1-pro in provider presets
 
 ### Fixed
@@ -574,7 +574,7 @@ This release restores the **Model Health Check (Stream Check)** UI, adds **OpenA
 
 - **User Manual i18n**: Restructured user manual for internationalization and added complete EN/JA translations alongside the existing ZH documentation
 - **User Manual OpenClaw**: Added OpenClaw coverage and completed settings documentation for the user manual
-- **UCloud CompShare Sponsor**: Added UCloud CompShare as a sponsor partner
+- **UCloud CompShare Provider**: Added UCloud CompShare as a provider entry
 - **Docs Directory Reorganization**: Reorganized docs directory structure, added user manual links to all three README files, removed cross-language links from user manual sections, and synced README features across EN/ZH/JA
 
 ### Maintenance
@@ -781,7 +781,7 @@ This release introduces **OpenClaw** as the fifth supported application, a full 
 
 ### Documentation
 
-- **Sponsors**: Added/updated SSSAiCode, Crazyrouter, AICoding, Right Code, and MiniMax sponsor entries across all README languages
+- **Providers**: Added/updated SSSAiCode, Crazyrouter, AICoding, Right Code, and MiniMax provider entries across all README languages
 - **User Manual**: Added user manual documentation (#979)
 
 ### Maintenance
@@ -836,7 +836,7 @@ This release introduces a generic API format selector, pricing configuration enh
 - **Windows Tests**: Stabilize test environment (#644)
 - **i18n**: Update apiFormatOpenAIChat label to mention proxy requirement
 - **Error Display**: Use extractErrorMessage for complete error display in mutations
-- **Sponsors**: Add AICodeMirror and reorder sponsor list
+- **Providers**: Add AICodeMirror and reorder provider list
 
 ---
 
@@ -1061,7 +1061,7 @@ Third beta release with important bug fixes for Windows compatibility, UI improv
 - **Shadow Removal** - Cleaner UI by removing shadow styles
 - **Code Inspector** - Added code-inspector-plugin for development
 - **i18n** - Complete internationalization for usage panel and settings
-- **Sponsor Logos** - Made sponsor logos clickable
+- **Provider Logos** - Made provider logos clickable
 
 ### Stats
 

@@ -59,6 +59,20 @@ const NEWAPI_DEFAULT_MODELS: UniversalProviderModels = {
  */
 export const universalProviderPresets: UniversalProviderPreset[] = [
   {
+    name: "MuskAI",
+    providerType: "muskai",
+    defaultApps: {
+      claude: true,
+      codex: true,
+      gemini: true,
+    },
+    defaultModels: NEWAPI_DEFAULT_MODELS,
+    websiteUrl: "https://muskapi.cc",
+    icon: "newapi",
+    iconColor: "#00A67E",
+    description: "MuskAI API 网关，默认请求地址为 https://api.muskapi.cc",
+  },
+  {
     name: "NewAPI",
     providerType: "newapi",
     defaultApps: {

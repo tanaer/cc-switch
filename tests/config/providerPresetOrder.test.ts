@@ -2,9 +2,11 @@ import { describe, expect, it } from "vitest";
 import { providerPresets } from "@/config/claudeProviderPresets";
 import { claudeDesktopProviderPresets } from "@/config/claudeDesktopProviderPresets";
 import { codexProviderPresets } from "@/config/codexProviderPresets";
+import { geminiProviderPresets } from "@/config/geminiProviderPresets";
 import { opencodeProviderPresets } from "@/config/opencodeProviderPresets";
 import { openclawProviderPresets } from "@/config/openclawProviderPresets";
 import { hermesProviderPresets } from "@/config/hermesProviderPresets";
+import { universalProviderPresets } from "@/config/universalProviderPresets";
 
 const namesOf = (presets: Array<{ name: string }>) =>
   presets.map((preset) => preset.name);
@@ -17,24 +19,27 @@ const expectInOrder = (names: string[], expected: string[]) => {
 };
 
 describe("provider preset order", () => {
-  it("Claude 预设按合作伙伴优先顺序排列", () => {
-    expectInOrder(namesOf(providerPresets), [
-      "Shengsuanyun",
-      "PatewayAI",
-      "火山Agentplan",
-      "BytePlus",
-      "DouBaoSeed",
-    ]);
-  });
-
-  it("Claude Desktop 预设按合作伙伴优先顺序排列", () => {
+  it("MuskAI 预设在各应用入口可直接选择", () => {
+    expectInOrder(namesOf(providerPresets), ["Claude Official", "MuskAI"]);
     expectInOrder(namesOf(claudeDesktopProviderPresets), [
-      "Shengsuanyun",
-      "PatewayAI",
-      "火山Agentplan",
-      "BytePlus",
-      "DouBaoSeed",
+      "Claude Desktop Official",
+      "MuskAI",
     ]);
+    expectInOrder(namesOf(codexProviderPresets), [
+      "OpenAI Official",
+      "MuskAI",
+    ]);
+    expectInOrder(namesOf(geminiProviderPresets), [
+      "Google Official",
+      "MuskAI",
+    ]);
+    expect(opencodeProviderPresets[0]?.name).toBe("MuskAI");
+    expect(openclawProviderPresets[0]?.name).toBe("MuskAI");
+    expect(hermesProviderPresets[0]?.name).toBe("MuskAI");
+    expect(universalProviderPresets[0]).toMatchObject({
+      name: "MuskAI",
+      websiteUrl: "https://muskapi.cc",
+    });
   });
 
   it("Claude Desktop 预设包含官方登录入口", () => {
@@ -46,34 +51,18 @@ describe("provider preset order", () => {
     });
   });
 
-  it("Codex 预设把 PatewayAI 放在胜算云后面", () => {
-    expectInOrder(namesOf(codexProviderPresets), ["Shengsuanyun", "PatewayAI"]);
-  });
-
-  it("OpenCode 预设把火山、BytePlus、DouBaoSeed 放在胜算云后面", () => {
-    expectInOrder(namesOf(opencodeProviderPresets), [
-      "Shengsuanyun",
-      "火山Agentplan",
-      "BytePlus",
-      "DouBaoSeed",
-    ]);
-  });
-
-  it("OpenClaw 预设把火山、BytePlus、DouBaoSeed 放在胜算云后面", () => {
-    expectInOrder(namesOf(openclawProviderPresets), [
-      "Shengsuanyun",
-      "火山Agentplan",
-      "BytePlus",
-      "DouBaoSeed",
-    ]);
-  });
-
-  it("Hermes 预设把火山、BytePlus、DouBaoSeed 放在胜算云后面", () => {
-    expectInOrder(namesOf(hermesProviderPresets), [
-      "Shengsuanyun",
-      "火山Agentplan",
-      "BytePlus",
-      "DouBaoSeed",
-    ]);
+  it("MuskAI 预设使用指定的官网和 API 地址", () => {
+    expect(providerPresets[1]).toMatchObject({
+      name: "MuskAI",
+      websiteUrl: "https://muskapi.cc",
+      settingsConfig: {
+        env: {
+          ANTHROPIC_BASE_URL: "https://api.muskapi.cc",
+        },
+      },
+    });
+    expect(codexProviderPresets[1]?.config).toContain(
+      'base_url = "https://api.muskapi.cc/v1"',
+    );
   });
 });

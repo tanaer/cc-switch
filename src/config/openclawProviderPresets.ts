@@ -25,8 +25,6 @@ export interface OpenClawProviderPreset {
   /** OpenClaw settings_config structure */
   settingsConfig: OpenClawProviderConfig;
   isOfficial?: boolean;
-  isPartner?: boolean;
-  partnerPromotionKey?: string;
   category?: ProviderCategory;
   /** Template variable definitions */
   templateValues?: Record<string, TemplateValueConfig>;
@@ -99,6 +97,60 @@ export const openclawApiProtocols = [
  */
 export const openclawProviderPresets: OpenClawProviderPreset[] = [
   {
+    name: "MuskAI",
+    websiteUrl: "https://muskapi.cc",
+    apiKeyUrl: "https://muskapi.cc",
+    settingsConfig: {
+      baseUrl: "https://api.muskapi.cc",
+      apiKey: "",
+      api: "anthropic-messages",
+      models: [
+        {
+          id: "claude-opus-4-7",
+          name: "Claude Opus 4.7",
+          contextWindow: 1000000,
+          cost: { input: 5, output: 25 },
+        },
+        {
+          id: "claude-sonnet-4-6",
+          name: "Claude Sonnet 4.6",
+          contextWindow: 1000000,
+          cost: { input: 3, output: 15 },
+        },
+        {
+          id: "claude-haiku-4-5-20251001",
+          name: "Claude Haiku 4.5",
+          contextWindow: 200000,
+          cost: { input: 0.8, output: 4 },
+        },
+      ],
+    },
+    category: "third_party",
+    icon: "newapi",
+    iconColor: "#00A67E",
+    templateValues: {
+      apiKey: {
+        label: "API Key",
+        placeholder: "",
+        editorValue: "",
+      },
+    },
+    suggestedDefaults: {
+      model: {
+        primary: "muskai/claude-opus-4-7",
+        fallbacks: [
+          "muskai/claude-sonnet-4-6",
+          "muskai/claude-haiku-4-5-20251001",
+        ],
+      },
+      modelCatalog: {
+        "muskai/claude-opus-4-7": { alias: "Opus" },
+        "muskai/claude-sonnet-4-6": { alias: "Sonnet" },
+        "muskai/claude-haiku-4-5-20251001": { alias: "Haiku" },
+      },
+    },
+  },
+  {
     name: "Shengsuanyun",
     nameKey: "providerForm.presets.shengsuanyun",
     websiteUrl: "https://www.shengsuanyun.com",
@@ -123,8 +175,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "aggregator",
-    isPartner: true,
-    partnerPromotionKey: "shengsuanyun",
     icon: "shengsuanyun",
     templateValues: {
       apiKey: {
@@ -163,8 +213,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "volcengine_agentplan",
     icon: "huoshan",
     iconColor: "#3370FF",
     templateValues: {
@@ -200,8 +248,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "byteplus",
     icon: "byteplus",
     iconColor: "#3370FF",
     templateValues: {
@@ -238,8 +284,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "doubaoseed",
     icon: "doubao",
     iconColor: "#3370FF",
     templateValues: {
@@ -599,8 +643,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "minimax_cn",
     theme: {
       backgroundColor: "#f64551",
       textColor: "#FFFFFF",
@@ -637,8 +679,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "minimax_en",
     theme: {
       backgroundColor: "#f64551",
       textColor: "#FFFFFF",
@@ -924,8 +964,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "aggregator",
-    isPartner: true,
-    partnerPromotionKey: "dmxapi",
     templateValues: {
       apiKey: {
         label: "API Key",
@@ -971,8 +1009,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "claudecn",
     icon: "claudecn",
     templateValues: {
       apiKey: {
@@ -1019,8 +1055,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "aggregator",
-    isPartner: true,
-    partnerPromotionKey: "runapi",
     icon: "runapi",
     templateValues: {
       apiKey: {
@@ -1206,8 +1240,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "aggregator",
-    isPartner: true,
-    partnerPromotionKey: "siliconflow",
     icon: "siliconflow",
     iconColor: "#6E29F6",
     templateValues: {
@@ -1242,8 +1274,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "aggregator",
-    isPartner: true,
-    partnerPromotionKey: "siliconflow",
     icon: "siliconflow",
     iconColor: "#000000",
     templateValues: {
@@ -1402,8 +1432,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "packycode",
     icon: "packycode",
     templateValues: {
       apiKey: {
@@ -1447,8 +1475,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "cubence",
     icon: "cubence",
     iconColor: "#000000",
     templateValues: {
@@ -1493,8 +1519,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "aigocode",
     icon: "aigocode",
     iconColor: "#5B7FFF",
     templateValues: {
@@ -1539,8 +1563,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "rightcode",
     icon: "rc",
     iconColor: "#E96B2C",
     templateValues: {
@@ -1585,8 +1607,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "aicodemirror",
     icon: "aicodemirror",
     iconColor: "#000000",
     templateValues: {
@@ -1631,8 +1651,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "aicoding",
     icon: "aicoding",
     iconColor: "#000000",
     templateValues: {
@@ -1677,8 +1695,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "crazyrouter",
     icon: "crazyrouter",
     iconColor: "#000000",
     templateValues: {
@@ -1723,8 +1739,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "sssaicode",
     icon: "sssaicode",
     iconColor: "#000000",
     templateValues: {
@@ -1765,8 +1779,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "aggregator",
-    isPartner: true, // 合作伙伴
-    partnerPromotionKey: "ucloud", // 促销信息 i18n key
     icon: "ucloud",
     iconColor: "#000000",
     templateValues: {
@@ -1805,8 +1817,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "aggregator",
-    isPartner: true, // 合作伙伴
-    partnerPromotionKey: "ucloud", // 促销信息 i18n key（复用）
     icon: "ucloud",
     iconColor: "#000000",
     templateValues: {
@@ -1843,8 +1853,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "micu",
     icon: "micu",
     iconColor: "#000000",
     templateValues: {
@@ -1881,8 +1889,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "ctok",
     icon: "ctok",
     iconColor: "#000000",
     templateValues: {
@@ -1980,8 +1986,6 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
       ],
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "lemondata",
     icon: "lemondata",
     templateValues: {
       apiKey: {

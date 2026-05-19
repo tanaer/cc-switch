@@ -8,8 +8,6 @@ export interface OpenCodeProviderPreset {
   apiKeyUrl?: string;
   settingsConfig: OpenCodeProviderConfig;
   isOfficial?: boolean;
-  isPartner?: boolean;
-  partnerPromotionKey?: string;
   category?: ProviderCategory;
   templateValues?: Record<string, TemplateValueConfig>;
   theme?: PresetTheme;
@@ -297,6 +295,35 @@ export function getPresetModelDefaults(
 
 export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
   {
+    name: "MuskAI",
+    websiteUrl: "https://muskapi.cc",
+    apiKeyUrl: "https://muskapi.cc",
+    settingsConfig: {
+      npm: "@ai-sdk/anthropic",
+      name: "MuskAI",
+      options: {
+        baseURL: "https://api.muskapi.cc",
+        apiKey: "",
+        setCacheKey: true,
+      },
+      models: {
+        "claude-opus-4-7": { name: "Claude Opus 4.7" },
+        "claude-sonnet-4-6": { name: "Claude Sonnet 4.6" },
+        "claude-haiku-4-5-20251001": { name: "Claude Haiku 4.5" },
+      },
+    },
+    category: "third_party",
+    icon: "newapi",
+    iconColor: "#00A67E",
+    templateValues: {
+      apiKey: {
+        label: "API Key",
+        placeholder: "",
+        editorValue: "",
+      },
+    },
+  },
+  {
     name: "Shengsuanyun",
     nameKey: "providerForm.presets.shengsuanyun",
     websiteUrl: "https://www.shengsuanyun.com",
@@ -315,8 +342,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "aggregator",
-    isPartner: true,
-    partnerPromotionKey: "shengsuanyun",
     icon: "shengsuanyun",
     templateValues: {
       apiKey: {
@@ -347,8 +372,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "volcengine_agentplan",
     icon: "huoshan",
     iconColor: "#3370FF",
     templateValues: {
@@ -380,8 +403,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "byteplus",
     icon: "byteplus",
     iconColor: "#3370FF",
     templateValues: {
@@ -413,8 +434,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "doubaoseed",
     icon: "doubao",
     iconColor: "#3370FF",
     templateValues: {
@@ -833,8 +852,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "minimax_cn",
     theme: {
       backgroundColor: "#f64551",
       textColor: "#FFFFFF",
@@ -866,8 +883,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "cn_official",
-    isPartner: true,
-    partnerPromotionKey: "minimax_en",
     theme: {
       backgroundColor: "#f64551",
       textColor: "#FFFFFF",
@@ -1025,8 +1040,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "aggregator",
-    isPartner: true,
-    partnerPromotionKey: "dmxapi",
     templateValues: {
       apiKey: {
         label: "API Key",
@@ -1195,8 +1208,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "packycode",
     icon: "packycode",
     templateValues: {
       apiKey: {
@@ -1224,8 +1235,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "cubence",
     icon: "cubence",
     iconColor: "#000000",
     templateValues: {
@@ -1254,8 +1263,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "aigocode",
     icon: "aigocode",
     iconColor: "#5B7FFF",
     templateValues: {
@@ -1283,8 +1290,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "rightcode",
     icon: "rc",
     iconColor: "#E96B2C",
     templateValues: {
@@ -1313,8 +1318,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "aicodemirror",
     icon: "aicodemirror",
     iconColor: "#000000",
     templateValues: {
@@ -1344,8 +1347,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "claudecn",
     icon: "claudecn",
     templateValues: {
       apiKey: {
@@ -1374,8 +1375,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "aggregator",
-    isPartner: true,
-    partnerPromotionKey: "runapi",
     icon: "runapi",
     templateValues: {
       apiKey: {
@@ -1403,8 +1402,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "aicoding",
     icon: "aicoding",
     iconColor: "#000000",
     templateValues: {
@@ -1433,8 +1430,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "crazyrouter",
     icon: "crazyrouter",
     iconColor: "#000000",
     templateValues: {
@@ -1463,8 +1458,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "sssaicode",
     icon: "sssaicode",
     iconColor: "#000000",
     templateValues: {
@@ -1493,8 +1486,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "micu",
     icon: "micu",
     iconColor: "#000000",
     templateValues: {
@@ -1523,8 +1514,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "ctok",
     icon: "ctok",
     iconColor: "#000000",
     templateValues: {
@@ -1582,8 +1571,6 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
       },
     },
     category: "third_party",
-    isPartner: true,
-    partnerPromotionKey: "lemondata",
     icon: "lemondata",
     templateValues: {
       apiKey: {
