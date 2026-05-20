@@ -706,7 +706,7 @@ fn switch_packycode_gemini_updates_security_selected_type() {
 }
 
 #[test]
-fn packycode_partner_meta_triggers_security_flag_even_without_keywords() {
+fn packycode_provider_type_meta_triggers_security_flag_even_without_keywords() {
     let _guard = test_mutex().lock().expect("acquire test mutex");
     reset_test_fs();
     let home = ensure_test_home();
@@ -729,7 +729,7 @@ fn packycode_partner_meta_triggers_security_flag_even_without_keywords() {
             Some("https://example.com".to_string()),
         );
         provider.meta = Some(ProviderMeta {
-            partner_promotion_key: Some("packycode".to_string()),
+            provider_type: Some("packycode".to_string()),
             ..ProviderMeta::default()
         });
         manager.providers.insert("packy-meta".to_string(), provider);
@@ -756,7 +756,7 @@ fn packycode_partner_meta_triggers_security_flag_even_without_keywords() {
             .pointer("/security/auth/selectedType")
             .and_then(|v| v.as_str()),
         Some("gemini-api-key"),
-        "Partner meta should set security.auth.selectedType even without packy keywords"
+        "providerType meta should set security.auth.selectedType even without packy keywords"
     );
 }
 
@@ -783,7 +783,7 @@ fn switch_google_official_gemini_preserves_env_vars() {
             Some("https://ai.google.dev".to_string()),
         );
         provider.meta = Some(ProviderMeta {
-            partner_promotion_key: Some("google-official".to_string()),
+            provider_type: Some("google_official".to_string()),
             ..ProviderMeta::default()
         });
         manager

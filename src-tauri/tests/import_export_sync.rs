@@ -1,6 +1,5 @@
 use serde_json::json;
 use std::fs;
-use std::path::PathBuf;
 
 use cc_switch_lib::{
     get_claude_settings_path, read_json_file, AppError, AppType, ConfigService, MultiAppConfig,
@@ -976,7 +975,7 @@ fn sync_gemini_google_official_sets_oauth_security() {
             Some("https://ai.google.dev".to_string()),
         );
         provider.meta = Some(ProviderMeta {
-            partner_promotion_key: Some("google-official".to_string()),
+            provider_type: Some("google_official".to_string()),
             ..ProviderMeta::default()
         });
         manager
@@ -1060,12 +1059,10 @@ fn export_sql_returns_error_for_invalid_path() {
 
     let state = create_test_state().expect("create test state");
 
-    // Try to export to an invalid path (nonexistent parent or invalid name on Windows)
-    let invalid_parent = if cfg!(windows) {
-        std::env::temp_dir().join("cc-switch-test-invalid<>dir")
-    } else {
-        PathBuf::from("/nonexistent/directory")
-    };
+    // Make the would-be parent a regular file so create_dir_all(parent) fails
+    // consistently across root/non-root and Windows/Unix environments.
+    let invalid_parent = std::env::temp_dir().join("cc-switch-test-invalid-parent");
+    fs::write(&invalid_parent, b"not a directory").expect("seed invalid parent file");
     let invalid_path = invalid_parent.join("export.sql");
     let err = state
         .db

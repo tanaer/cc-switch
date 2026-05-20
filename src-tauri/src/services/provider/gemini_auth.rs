@@ -18,9 +18,9 @@ pub(crate) enum GeminiAuthType {
     Generic,
 }
 
-// Partner Promotion Key constants
-const PACKYCODE_PARTNER_KEY: &str = "packycode";
-const GOOGLE_OFFICIAL_PARTNER_KEY: &str = "google-official";
+// Provider type constants
+const PACKYCODE_PROVIDER_TYPE: &str = "packycode";
+const GOOGLE_OFFICIAL_PROVIDER_TYPES: [&str; 2] = ["google_official", "gemini_official"];
 
 // PackyCode keyword constants
 const PACKYCODE_KEYWORDS: [&str; 3] = ["packycode", "packyapi", "packy"];
@@ -35,16 +35,20 @@ const PACKYCODE_KEYWORDS: [&str; 3] = ["packycode", "packyapi", "packy"];
 /// - `GeminiAuthType::Packycode`: PackyCode provider, uses API Key
 /// - `GeminiAuthType::Generic`: Other generic providers, uses API Key
 pub(crate) fn detect_gemini_auth_type(provider: &Provider) -> GeminiAuthType {
-    // Priority 1: Check partner_promotion_key (most reliable)
-    if let Some(key) = provider
+    // Priority 1: Check explicit provider type metadata.
+    if let Some(provider_type) = provider
         .meta
         .as_ref()
-        .and_then(|meta| meta.partner_promotion_key.as_deref())
+        .and_then(|meta| meta.provider_type.as_deref())
     {
-        if key.eq_ignore_ascii_case(GOOGLE_OFFICIAL_PARTNER_KEY) {
+        let normalized = provider_type.replace('-', "_").to_ascii_lowercase();
+        if GOOGLE_OFFICIAL_PROVIDER_TYPES
+            .iter()
+            .any(|candidate| normalized == *candidate)
+        {
             return GeminiAuthType::GoogleOfficial;
         }
-        if key.eq_ignore_ascii_case(PACKYCODE_PARTNER_KEY) {
+        if normalized == PACKYCODE_PROVIDER_TYPE {
             return GeminiAuthType::Packycode;
         }
     }
