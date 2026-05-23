@@ -591,6 +591,7 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: CC Switch ${{ github.ref_name }}
           prerelease: false
+          overwrite_files: true
           body: |
             ## CC Switch ${{ github.ref_name }}
 
