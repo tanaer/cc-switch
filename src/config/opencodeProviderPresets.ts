@@ -1,5 +1,6 @@
 import type { ProviderCategory, OpenCodeProviderConfig } from "../types";
 import type { PresetTheme, TemplateValueConfig } from "./claudeProviderPresets";
+import { filterProviderPresets } from "./providerPresetWhitelist";
 
 export interface OpenCodeProviderPreset {
   name: string;
@@ -293,7 +294,7 @@ export function getPresetModelDefaults(
   return models.find((m) => m.id === modelId);
 }
 
-export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
+const allOpenCodeProviderPresets: OpenCodeProviderPreset[] = [
   {
     name: "MuskAI",
     websiteUrl: "https://muskapi.cc",
@@ -1686,3 +1687,7 @@ export const opencodeProviderPresets: OpenCodeProviderPreset[] = [
     isCustomTemplate: true,
   },
 ];
+
+export const opencodeProviderPresets = filterProviderPresets(
+  allOpenCodeProviderPresets,
+);

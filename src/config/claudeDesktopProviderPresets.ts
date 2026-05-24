@@ -10,6 +10,7 @@
  */
 import { ProviderCategory } from "../types";
 import type { PresetTheme } from "./claudeProviderPresets";
+import { filterProviderPresets } from "./providerPresetWhitelist";
 
 export type ClaudeDesktopApiFormat =
   | "anthropic"
@@ -131,7 +132,7 @@ const brandedRoutes = (
     });
 };
 
-export const claudeDesktopProviderPresets: ClaudeDesktopProviderPreset[] = [
+const allClaudeDesktopProviderPresets: ClaudeDesktopProviderPreset[] = [
   {
     name: "Claude Desktop Official",
     websiteUrl: "https://claude.ai/download",
@@ -900,3 +901,7 @@ export const claudeDesktopProviderPresets: ClaudeDesktopProviderPreset[] = [
     iconColor: "#000000",
   },
 ];
+
+export const claudeDesktopProviderPresets = filterProviderPresets(
+  allClaudeDesktopProviderPresets,
+);

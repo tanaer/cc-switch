@@ -11,57 +11,87 @@ import { universalProviderPresets } from "@/config/universalProviderPresets";
 const namesOf = (presets: Array<{ name: string }>) =>
   presets.map((preset) => preset.name);
 
-const expectInOrder = (names: string[], expected: string[]) => {
-  const indexes = expected.map((name) => names.indexOf(name));
-
-  expect(indexes).not.toContain(-1);
-  expect(indexes).toEqual(expected.map((_, index) => indexes[0] + index));
-};
-
 describe("provider preset order", () => {
-  it("MuskAI 预设在各应用入口可直接选择", () => {
-    expectInOrder(namesOf(providerPresets), ["Claude Official", "MuskAI"]);
-    expectInOrder(namesOf(claudeDesktopProviderPresets), [
-      "Claude Desktop Official",
+  it("only exposes the curated provider presets and keeps MuskAI first", () => {
+    expect(namesOf(providerPresets)).toEqual([
       "MuskAI",
+      "Claude Official",
+      "Gemini Native",
+      "DeepSeek",
+      "Zhipu GLM",
+      "Bailian",
+      "Bailian For Coding",
+      "Kimi",
+      "Kimi For Coding",
+      "Novita AI",
+      "OpenRouter",
     ]);
-    expectInOrder(namesOf(codexProviderPresets), [
-      "OpenAI Official",
+    expect(namesOf(claudeDesktopProviderPresets)).toEqual([
       "MuskAI",
+      "Claude Official",
+      "Gemini Native",
+      "DeepSeek",
+      "Zhipu GLM",
+      "Bailian",
+      "Bailian For Coding",
+      "Kimi",
+      "Kimi For Coding",
+      "Novita AI",
+      "OpenRouter",
     ]);
-    expectInOrder(namesOf(geminiProviderPresets), [
-      "Google Official",
+    expect(namesOf(codexProviderPresets)).toEqual(["MuskAI", "OpenRouter"]);
+    expect(namesOf(geminiProviderPresets)).toEqual([
       "MuskAI",
+      "Gemini Native",
+      "OpenRouter",
     ]);
-    expect(opencodeProviderPresets[0]?.name).toBe("MuskAI");
-    expect(openclawProviderPresets[0]?.name).toBe("MuskAI");
-    expect(hermesProviderPresets[0]?.name).toBe("MuskAI");
-    expect(universalProviderPresets[0]).toMatchObject({
-      name: "MuskAI",
-      websiteUrl: "https://muskapi.cc",
-    });
+    expect(namesOf(opencodeProviderPresets)).toEqual([
+      "MuskAI",
+      "DeepSeek",
+      "Zhipu GLM",
+      "Bailian",
+      "Kimi",
+      "Kimi For Coding",
+      "Novita AI",
+      "OpenRouter",
+    ]);
+    expect(namesOf(openclawProviderPresets)).toEqual([
+      "MuskAI",
+      "DeepSeek",
+      "Zhipu GLM",
+      "Kimi",
+      "Kimi For Coding",
+      "Novita AI",
+      "OpenRouter",
+    ]);
+    expect(namesOf(hermesProviderPresets)).toEqual([
+      "MuskAI",
+      "DeepSeek",
+      "Zhipu GLM",
+      "Bailian",
+      "Bailian For Coding",
+      "Kimi",
+      "Kimi For Coding",
+      "Novita AI",
+      "OpenRouter",
+    ]);
+    expect(namesOf(universalProviderPresets)).toEqual(["MuskAI"]);
   });
 
-  it("Claude Desktop 预设包含官方登录入口", () => {
-    expect(claudeDesktopProviderPresets[0]).toMatchObject({
-      name: "Claude Desktop Official",
-      category: "official",
-      baseUrl: "",
-      mode: "direct",
-    });
-  });
-
-  it("MuskAI 预设使用指定的官网和 API 地址", () => {
-    expect(providerPresets[1]).toMatchObject({
+  it("MuskAI presets use the requested logo and endpoints", () => {
+    expect(providerPresets[0]).toMatchObject({
       name: "MuskAI",
+      icon: "muskai",
       websiteUrl: "https://muskapi.cc",
-      settingsConfig: {
-        env: {
-          ANTHROPIC_BASE_URL: "https://api.muskapi.cc",
-        },
-      },
     });
-    expect(codexProviderPresets[1]?.config).toContain(
+    expect(
+      (providerPresets[0]!.settingsConfig as { env: Record<string, string> })
+        .env,
+    ).toMatchObject({
+      ANTHROPIC_BASE_URL: "https://api.muskapi.cc",
+    });
+    expect(codexProviderPresets[0]?.icon).toBe("muskai");
+    expect(codexProviderPresets[0]?.config).toContain(
       'base_url = "https://api.muskapi.cc/v1"',
     );
   });

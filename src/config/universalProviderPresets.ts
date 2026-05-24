@@ -10,6 +10,7 @@ import type {
   UniversalProviderApps,
   UniversalProviderModels,
 } from "@/types";
+import { filterProviderPresets } from "./providerPresetWhitelist";
 
 /**
  * 统一供应商预设接口
@@ -57,7 +58,7 @@ const NEWAPI_DEFAULT_MODELS: UniversalProviderModels = {
 /**
  * 统一供应商预设列表
  */
-export const universalProviderPresets: UniversalProviderPreset[] = [
+const allUniversalProviderPresets: UniversalProviderPreset[] = [
   {
     name: "MuskAI",
     providerType: "muskai",
@@ -102,6 +103,10 @@ export const universalProviderPresets: UniversalProviderPreset[] = [
     isCustomTemplate: true,
   },
 ];
+
+export const universalProviderPresets = filterProviderPresets(
+  allUniversalProviderPresets,
+);
 
 /**
  * 根据预设创建统一供应商

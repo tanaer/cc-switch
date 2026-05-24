@@ -1,4 +1,5 @@
 import type { ProviderCategory } from "@/types";
+import { filterProviderPresets } from "./providerPresetWhitelist";
 
 /**
  * Gemini 预设供应商的视觉主题配置
@@ -29,7 +30,7 @@ export interface GeminiProviderPreset {
   iconColor?: string; // 图标颜色
 }
 
-export const geminiProviderPresets: GeminiProviderPreset[] = [
+const allGeminiProviderPresets: GeminiProviderPreset[] = [
   {
     name: "Google Official",
     websiteUrl: "https://ai.google.dev/",
@@ -339,6 +340,10 @@ export const geminiProviderPresets: GeminiProviderPreset[] = [
     category: "custom",
   },
 ];
+
+export const geminiProviderPresets = filterProviderPresets(
+  allGeminiProviderPresets,
+);
 
 export function getGeminiPresetByName(
   name: string,

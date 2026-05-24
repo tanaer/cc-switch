@@ -4,6 +4,7 @@
  */
 import type { ProviderCategory } from "../types";
 import type { PresetTheme, TemplateValueConfig } from "./claudeProviderPresets";
+import { filterProviderPresets } from "./providerPresetWhitelist";
 
 /**
  * Marker field and source values that `hermes_config.rs::get_providers`
@@ -125,7 +126,7 @@ export interface HermesProviderSettingsConfig {
   [key: string]: unknown;
 }
 
-export const hermesProviderPresets: HermesProviderPreset[] = [
+const allHermesProviderPresets: HermesProviderPreset[] = [
   {
     name: "MuskAI",
     websiteUrl: "https://muskapi.cc",
@@ -1209,3 +1210,7 @@ export const hermesProviderPresets: HermesProviderPreset[] = [
     },
   },
 ];
+
+export const hermesProviderPresets = filterProviderPresets(
+  allHermesProviderPresets,
+);

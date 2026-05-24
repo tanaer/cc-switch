@@ -2,6 +2,7 @@
  * 预设供应商配置模板
  */
 import { ProviderCategory } from "../types";
+import { filterProviderPresets } from "./providerPresetWhitelist";
 
 export interface TemplateValueConfig {
   label: string;
@@ -70,7 +71,7 @@ export interface ProviderPreset {
   modelsUrl?: string;
 }
 
-export const providerPresets: ProviderPreset[] = [
+const allProviderPresets: ProviderPreset[] = [
   {
     name: "Claude Official",
     websiteUrl: "https://www.anthropic.com/claude-code",
@@ -1099,3 +1100,5 @@ export const providerPresets: ProviderPreset[] = [
     iconColor: "#FF9900",
   },
 ];
+
+export const providerPresets = filterProviderPresets(allProviderPresets);

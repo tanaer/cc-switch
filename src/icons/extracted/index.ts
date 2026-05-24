@@ -8,6 +8,7 @@ import _eflowcode from "./eflowcode.png";
 import _hermes from "./hermes.png";
 import _huoshan from "./huoshan.png";
 import _lemondata from "./lemondata.png";
+import _muskai from "./muskai.png";
 import _pateway from "./pateway.jpg";
 import _pipellm from "./pipellm.png";
 import _relaxcode from "./relaxcode.png";
@@ -94,6 +95,7 @@ export const iconUrls: Record<string, string> = {
   hermes: _hermes,
   huoshan: _huoshan,
   lemondata: _lemondata,
+  muskai: _muskai,
   pateway: _pateway,
   pipellm: _pipellm,
   relaxcode: _relaxcode,

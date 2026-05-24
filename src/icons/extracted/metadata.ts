@@ -252,6 +252,13 @@ export const iconMetadata: Record<string, IconMetadata> = {
     keywords: ["mistral"],
     defaultColor: "#FF7000",
   },
+  muskai: {
+    name: "muskai",
+    displayName: "MuskAI",
+    category: "ai-provider",
+    keywords: ["muskai", "musk api", "muskapi"],
+    defaultColor: "#00A67E",
+  },
   newapi: {
     name: "newapi",
     displayName: "newapi",

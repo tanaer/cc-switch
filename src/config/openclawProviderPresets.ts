@@ -8,6 +8,7 @@ import type {
   OpenClawDefaultModel,
 } from "../types";
 import type { PresetTheme, TemplateValueConfig } from "./claudeProviderPresets";
+import { filterProviderPresets } from "./providerPresetWhitelist";
 
 /** Suggested default model configuration for a preset */
 export interface OpenClawSuggestedDefaults {
@@ -95,7 +96,7 @@ export const openclawApiProtocols = [
 /**
  * OpenClaw provider presets list
  */
-export const openclawProviderPresets: OpenClawProviderPreset[] = [
+const allOpenClawProviderPresets: OpenClawProviderPreset[] = [
   {
     name: "MuskAI",
     websiteUrl: "https://muskapi.cc",
@@ -2066,3 +2067,7 @@ export const openclawProviderPresets: OpenClawProviderPreset[] = [
     },
   },
 ];
+
+export const openclawProviderPresets = filterProviderPresets(
+  allOpenClawProviderPresets,
+);

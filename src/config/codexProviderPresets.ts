@@ -4,6 +4,7 @@
 import { ProviderCategory } from "../types";
 import type { CodexApiFormat } from "../types";
 import type { PresetTheme } from "./claudeProviderPresets";
+import { filterProviderPresets } from "./providerPresetWhitelist";
 
 export interface CodexProviderPreset {
   name: string;
@@ -63,7 +64,7 @@ wire_api = "responses"
 requires_openai_auth = true`;
 }
 
-export const codexProviderPresets: CodexProviderPreset[] = [
+const allCodexProviderPresets: CodexProviderPreset[] = [
   {
     name: "OpenAI Official",
     websiteUrl: "https://chatgpt.com/codex",
@@ -498,3 +499,7 @@ base_url = "https://cc-api.pipellm.ai/v1"`,
     category: "aggregator",
   },
 ];
+
+export const codexProviderPresets = filterProviderPresets(
+  allCodexProviderPresets,
+);
